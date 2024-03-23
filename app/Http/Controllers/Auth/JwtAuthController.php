@@ -12,6 +12,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class JwtAuthController extends Controller
 {
@@ -51,7 +52,7 @@ class JwtAuthController extends Controller
 
         $credentials = $request->only(['email', 'password']);
 
-        $token = Auth::attempt($credentials);
+        $token = JWTAuth::attempt($credentials);
 
         if (!$token) {
             return response()->json([

@@ -23,18 +23,21 @@ class UserController extends Controller
     /**
      * Update the currently authenticated user.
      */
-    public function update(UpdateUserRequest $request): UserResource
+    public function update(UpdateUserRequest $request)
     {
-        $request->user()->fill($request->validated());
+        $user = $request->user();
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-            $request->user()->sendEmailVerificationNotification();
+        $userData = $request->validated();
+
+        if ($user->isDirty('email')) {
+            $userData['email_verified_at'] = null;
+            $user->sendEmailVerificationNotification();
         }
 
-        $request->user()->save();
+        $user->update($userData);
 
-        return new UserResource(Auth::user()->fresh());
+        return
+            new UserResource($user->fresh());
     }
 
     /**
@@ -42,14 +45,17 @@ class UserController extends Controller
      */
     public function changePassword(Request $request): JsonResponse
     {
-        $request->validate([
+        // Validasi permintaan
+        $data = $request->validate([
             'password' => ['required', 'confirmed', Rules\Password::defaults()]
         ]);
 
+        // Perbarui password pengguna
         $request->user()->update([
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($data['password'])
         ]);
 
+        // Respon sukses
         return response()->json([
             'status' => 'Password updated.'
         ]);

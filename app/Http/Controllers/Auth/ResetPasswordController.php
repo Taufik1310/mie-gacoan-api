@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\ValidationException;
 
+
 class ResetPasswordController extends Controller
 {
     /**

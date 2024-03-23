@@ -188,4 +188,5 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    'ROLE' => ['ADMIN', 'CASHIER', 'CUSTOMER'],
 ];

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,9 @@ require __DIR__ . '/auth.php';
 Route::middleware('auth:api')->group(function () {
     Route::get('/user', [UserController::class, 'show'])
         ->name('user.show');
+
+    Route::post('/file', FileController::class)
+        ->name('file.upload');
 });
 
 Route::middleware(['auth:api', 'verified'])->group(function () {
@@ -28,3 +32,6 @@ Route::middleware(['auth:api', 'verified'])->group(function () {
     Route::patch('/user/change-password', [UserController::class, 'changePassword'])
         ->name('user.change-password');
 });
+
+require __DIR__ . '/admin/menuType.php';
+require __DIR__ . '/admin/menu.php';
