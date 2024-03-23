@@ -11,13 +11,15 @@ Route::middleware('auth:api')->group(function () {
         ->name('menu.show');
 });
 
-Route::middleware(['auth:api', 'verified'])->group(function () {
+Route::middleware(['auth:api', 'verified', 'role:0'])->group(function () {
     Route::post('/menu', [MenuController::class, 'store'])
         ->name('menu.store');
 
-    Route::patch('/menu/{uuid}', [MenuController::class, 'update'])
-        ->name('menu.update');
-
     Route::delete('/menu/{uuid}', [MenuController::class, 'destroy'])
         ->name('menu.destroy');
+});
+
+Route::middleware(['auth:api', 'verified', 'role:0,1'])->group(function () {
+    Route::patch('/menu/{uuid}', [MenuController::class, 'update'])
+        ->name('menu.update');
 });

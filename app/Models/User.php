@@ -34,7 +34,8 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
         'address',
         'profilePicture',
         'role',
-        'isBlocked'
+        'isBlocked',
+        'email_verified_at'
     ];
 
     /**
@@ -71,5 +72,10 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
     public function getJWTCustomClaims(): array
     {
         return [];
+    }
+
+    public function hasRole($role)
+    {
+        return $this->role === $role;
     }
 }

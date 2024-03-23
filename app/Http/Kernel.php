@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\EnsureEmailIsVerified;
+use App\Http\Middleware\EnsureUserhHasRole;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -64,5 +65,6 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => EnsureEmailIsVerified::class,
+        'role' => EnsureUserhHasRole::class
     ];
 }

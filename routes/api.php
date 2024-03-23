@@ -20,9 +20,6 @@ require __DIR__ . '/auth.php';
 Route::middleware('auth:api')->group(function () {
     Route::get('/user', [UserController::class, 'show'])
         ->name('user.show');
-
-    Route::post('/file', FileController::class)
-        ->name('file.upload');
 });
 
 Route::middleware(['auth:api', 'verified'])->group(function () {
@@ -31,6 +28,9 @@ Route::middleware(['auth:api', 'verified'])->group(function () {
 
     Route::patch('/user/change-password', [UserController::class, 'changePassword'])
         ->name('user.change-password');
+
+    Route::post('/file', FileController::class)
+        ->name('file.upload');
 });
 
 require __DIR__ . '/admin/menuType.php';

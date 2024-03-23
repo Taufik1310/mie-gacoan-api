@@ -8,7 +8,7 @@ Route::middleware('auth:api')->group(function () {
         ->name('menu-type.index');
 });
 
-Route::middleware(['auth:api', 'verified'])->group(function () {
+Route::middleware(['auth:api', 'verified', 'role:0'])->group(function () {
     Route::post('/menu-type', [MenuTypeController::class, 'store'])
         ->name('menu-type.store');
 
