@@ -33,5 +33,6 @@ Route::middleware(['auth:api', 'verified'])->group(function () {
         ->name('file.upload');
 });
 
-require __DIR__ . '/admin/menuType.php';
-require __DIR__ . '/admin/menu.php';
+require __DIR__ . '/menuType.php';
+require __DIR__ . '/menu.php';
+require __DIR__ . '/booth.php';
