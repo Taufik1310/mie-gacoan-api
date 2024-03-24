@@ -45,8 +45,8 @@ class MenuTypeController extends Controller
      */
     public function update(UpdateMenuTypeRequest $request, $uuid): JsonResponse
     {
-
         $request->validated();
+
 
         $menuType = MenuType::find($uuid);
 
@@ -66,7 +66,6 @@ class MenuTypeController extends Controller
      */
     public function destroy($uuid)
     {
-
         MenuType::destroy($uuid);
 
         return response()->json([

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CredentialController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +34,7 @@ Route::middleware(['auth:api', 'verified'])->group(function () {
         ->name('file.upload');
 });
 
+require __DIR__ . '/credential.php';
 require __DIR__ . '/menuType.php';
 require __DIR__ . '/menu.php';
 require __DIR__ . '/booth.php';

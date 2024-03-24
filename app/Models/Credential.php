@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Menu extends Model
+class Credential extends Model
 {
     use HasFactory, HasUuids;
 
@@ -14,11 +14,8 @@ class Menu extends Model
     public $incrementing = false;
 
     protected $fillable = [
-        'name',
-        'description',
-        'price',
-        'picture',
-        'status',
-        'menuTypeId'
+        'accountName',
+        'accountNumber',
+        'bank',
     ];
 }
